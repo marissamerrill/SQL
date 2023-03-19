@@ -1,0 +1,38 @@
+#In this SQL code, I'm querying a database that's holding NBA "player of the week" data to answer questions about the data.
+
+#1 What is the average height of all the basketball players in this data?
+SELECT AVG(height) 
+FROM players;
+
+#2 Who is the oldest player who earned "player of the week? How old were they?
+SELECT player, MAX(age)
+FROM players;
+
+#3 Which player weighs the least? What do they weigh in lbs? In kg?
+SELECT player, MIN(weight), MIN (weight_kg)
+FROM players;
+
+#4 How many players are in the following age groups: 20-24, 25-29, 30-34, 36-39, 40-44?
+SELECT COUNT(*),
+    CASE
+        WHEN age <= 24 THEN "age 20-24"
+        WHEN age <= 29 THEN "age 25-29"
+        WHEN age <= 34 THEN "age 30-34"
+        WHEN age <= 39 THEN "age 35-39"
+        WHEN age <= 44 THEN "age 40-44"
+    END as "age range"
+FROM players
+GROUP BY "age range";
+
+#5 Which NBA teams have a height average above 6’3’’?
+SELECT team, AVG(height) AS avg_height FROM players
+GROUP BY team
+HAVING avg_height > 6.25; 
+
+#6 How many players received “player of the week” who were on the Bulls and over the age of 30?
+SELECT * FROM players 
+WHERE age > 30 AND team = "Chicago Bulls";
+
+#7 Which players are on the Miami Heat or Los Angeles Lakers?
+SELECT * FROM players 
+WHERE team = "Los Angeles Lakers" OR team = "Miami Heat";
