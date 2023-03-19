@@ -1,0 +1,71 @@
+# In this SQL code, I created a table of country artists and separate tables that include different information regardings the artists. 
+# Following the database, I use relational queries to answer questions about the data.
+
+CREATE TABLE singers (id INTEGER PRIMARY KEY, name TEXT, age INTEGER);
+
+INSERT INTO singers VALUES
+(1, "Taylor Swift", "33"),
+(2, "Luke Bryan", "46"),
+(3, "Morgan Wallen", "29"),
+(4, "Luke Combs", "33"),
+(5, "Carrie Underwood", "40"),
+(6, "Kelsea Ballerini", "29"),
+(7, "Blake Shelton", "46"),
+(8, "Dolly Parton", "77"),
+(9, "Kane Brown", "29"),
+(10, "Miranda Lambert", "39"),
+(11, "Thomas Rhett", "32"),
+(12, "Jason Aldean", "46"),
+(13, "Keith Urban", "55"),
+(14, "Tim McGraw", "55"),
+(15, "Sam Hunt", "38");
+
+CREATE TABLE songs (id INTEGER PRIMARY KEY, title TEXT, name TEXT);
+
+INSERT INTO songs VALUES
+(1, "Love Story", "Taylor Swift"),
+(2, "Country Girl", "Luke Bryan"),
+(3, "Dangerous", "Morgan Wallen"),
+(4, "Better Together", "Luke Combs"),
+(5, "Good Girl", "Carrie Underwood"),
+(6, "Love Me Like You Mean It", "Kelsea Ballerini"),
+(7, "Mine Would Be You", "Blake Shelton"),
+(8, "Coat of Many Colors", "Dolly Parton"),
+(9, "Closer", "Kane Brown"),
+(10, "Automatic", "Miranda Lambert"),
+(11, "TShirt", "Thomas Rhett"),
+(12, "Shes Country", "Jason Aldean"),
+(13, "Cop Car", "Keith Urban"),
+(14, "Not a Moment Too Soon", "Tim McGraw"),
+(15, "House Party", "Sam Hunt");
+
+CREATE TABLE locations (id INTEGER PRIMARY KEY, birth_place TEXT, artist TEXT);
+
+INSERT INTO locations VALUES
+(1, "Pennsylvania", "Taylor Swift"),
+(2, "Georgia", "Luke Bryan"),
+(3, "Tennessee", "Morgan Wallen"),
+(4, "North Carolina", "Luke Combs"),
+(5, "Oklahoma", "Carrie Underwood"),
+(6, "Tennessee", "Kelsea Ballerini"),
+(7, "Oklahoma", "Blake Shelton"),
+(8, "Tennessee", "Dolly Parton"),
+(9, "Tennessee", "Kane Brown"),
+(10, "Texas", "Miranda Lambert"),
+(11, "Georgia", "Thomas Rhett"),
+(12, "Geogia", "Jason Aldean"),
+(13, "New Zealand AUS", "Keith Urban"),
+(14, "Louisiana", "Tim McGraw"),
+(15, "Georgia", "Sam Hunt");
+
+#1 What songs are each country artist known for?
+SELECT singers.name, songs. title
+FROM singers
+JOIN songs
+ON singers.name = songs.name;
+
+#2 What state was each country artist born in?
+SELECT singers.name, locations.birth_place
+FROM singers
+JOIN locations
+ON singers.name = locations.artist;
